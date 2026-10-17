@@ -1,14 +1,36 @@
 from typing import Literal
-from pydantic import BaseModel, Field, ConfigDict
+
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class LearnerIndicators(BaseModel):
     """Aggregated observations only; do not submit names or direct identifiers."""
+
     model_config = ConfigDict(extra="forbid")
-    attendance_rate: float | None = Field(default=None, ge=0, le=1, description="Fraction of attended sessions in observation window")
-    grade_trend: float | None = Field(default=None, ge=-1, le=1, description="Normalized change in grades (-1 to 1)")
-    assignment_completion_rate: float | None = Field(default=None, ge=0, le=1)
-    consecutive_absences: int | None = Field(default=None, ge=0, le=100)
+    attendance_rate: float | None = Field(
+        default=None,
+        ge=0,
+        le=1,
+        description="Fraction of attended sessions in the observation window",
+    )
+    grade_trend: float | None = Field(
+        default=None,
+        ge=-1,
+        le=1,
+        description="Normalized change in grades from -1 to 1",
+    )
+    assignment_completion_rate: float | None = Field(
+        default=None,
+        ge=0,
+        le=1,
+        description="Fraction of assignments completed in the observation window",
+    )
+    consecutive_absences: int | None = Field(
+        default=None,
+        ge=0,
+        le=100,
+        description="Current number of consecutive absences; scoring is capped at 10",
+    )
 
 
 class Contribution(BaseModel):
@@ -24,4 +46,7 @@ class RiskAssessment(BaseModel):
     contributions: list[Contribution]
     next_step: str
     model_version: str = "heuristic-v0.1"
-    disclaimer: str = "Research/demo triage aid, not a validated probability or automated decision. Human review required."
+    disclaimer: str = (
+        "Research/demo triage aid, not a validated probability or automated decision. "
+        "Human review required."
+    )
