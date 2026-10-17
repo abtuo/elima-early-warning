@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+*.egg-info/
+dist/
+build/
+.coverage
+.DS_Store
+# Never commit student data, exports, database dumps or secrets
+private_data/
+student_data/
+*.sqlite
+*.db
+*.pem

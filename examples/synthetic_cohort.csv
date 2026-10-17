@@ -1,0 +1,6 @@
+synthetic_record,attendance_rate,grade_trend,assignment_completion_rate,consecutive_absences
+DEMO-001,0.97,0.10,0.96,0
+DEMO-002,0.78,-0.30,0.62,3
+DEMO-003,0.55,-0.75,0.40,8
+DEMO-004,0.90,0.03,0.84,1
+DEMO-005,0.68,-0.42,0.50,5
